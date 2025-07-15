@@ -16,30 +16,61 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
+  background-color: var(--bg);
+  border-bottom: 1px solid #1e1e1e;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.hero {
-  text-align: center;
+.logo img {
+  height: 40px;
 }
 
-.glow {
-  font-size: 3rem;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2);
+.nav-links {
+  display: flex;
+  gap: 2rem;
 }
 
-.subtitle {
-  color: var(--muted);
-  margin: 1rem 0;
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent2);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+  color: var(--accent2);
 }
 
 .btn-primary {
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   background-color: transparent;
   border: 2px solid var(--accent);
   color: var(--accent);
@@ -51,5 +82,21 @@ body {
 .btn-primary:hover {
   background-color: var(--accent);
   color: var(--bg);
-  box-shadow: 0 0 15px var(--accent2);
+  box-shadow: 0 0 10px var(--accent2);
+}
+
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.glow {
+  font-size: 3rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2);
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 1rem 0;
 }
