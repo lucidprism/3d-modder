@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth | Lucid Prism</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="../assets/images/logo_transparent.png" alt="Enigma Logo" />
+    </div>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="#">Shop</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="auth-buttons">
+      <span id="auth-status"></span>
+      <button id="logout-btn" class="btn-link">Logout</button>
+    </div>
+  </header>
+
+  <main class="auth-container">
+    <div class="auth-tabs">
+      <button onclick="showTab('login')">Login</button>
+      <button onclick="showTab('signup')">Sign Up</button>
+    </div>
+
+    <div class="auth-box" id="login-tab">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button id="login-btn" class="btn-primary">Login</button>
+    </div>
+
+    <div class="auth-box hidden" id="signup-tab">
+      <h2>Sign Up</h2>
+      <input type="email" id="signup-email" placeholder="Email" />
+      <input type="password" id="signup-password" placeholder="Password" />
+      <button id="signup-btn" class="btn-primary">Sign Up</button>
+    </div>
+  </main>
+
+  <script src="../assets/js/auth.js" type="module"></script>
+  <script>
+    function showTab(tab) {
+      document.getElementById("login-tab").classList.add("hidden");
+      document.getElementById("signup-tab").classList.add("hidden");
+      document.getElementById(`${tab}-tab`).classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
