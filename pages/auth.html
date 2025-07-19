@@ -9,22 +9,29 @@
 <body>
   <!-- Navbar -->
   <header class="navbar">
-    <div class="logo">
-      <a href="../index.html">
-        <img src="../assets/images/logo_transparent.png" alt="Lucid Prism Logo" />
-      </a>
-    </div>
-    <nav class="nav-links" aria-label="Main Navigation">
-      <a href="../index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="#">Shop</a>
-      <a href="#">Contact</a>
-    </nav>
-    <div class="auth-buttons">
-      <span id="auth-status"></span>
-      <button id="logout-btn" class="btn-link" aria-label="Logout">Logout</button>
-    </div>
-  </header>
+  <div class="logo">
+    <a href="../index.html">
+      <img src="../assets/images/logo_transparent.png" alt="Lucid Prism Logo" />
+    </a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+    ☰
+  </button>
+
+  <nav class="nav-links" id="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <span id="auth-status"></span>
+    <button id="logout-btn" class="btn-link" aria-label="Logout">Logout</button>
+  </div>
+</header>
+
 
   <!-- Main Auth Section -->
   <main class="auth-container">
