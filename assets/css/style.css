@@ -25,13 +25,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: var(--bg-light);
-  border-bottom: 2px solid var(--muted);
-  position: sticky;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  position: fixed;
   top: 0;
+  width: 100%;
   z-index: 1000;
-  flex-wrap: wrap;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: none;
 }
 
 .logo img {
@@ -56,6 +57,10 @@ body {
 
 .nav-links a:hover {
   color: var(--accent);
+}
+
+.nav-link.active {
+  border-bottom: 2px solid var(--accent);
 }
 
 /* Auth Buttons */
@@ -182,4 +187,27 @@ body {
     gap: 0.75rem;
     margin-top: 0.5rem;
   }
+}
+html {
+  scroll-behavior: smooth;
+}
+.about-section {
+  padding: 6rem 2rem;
+  background-color: var(--bg);
+  color: var(--accent2);
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.about-section p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--accent2);
 }

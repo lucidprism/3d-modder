@@ -69,20 +69,61 @@
       <img src="assets/images/logo_transparent.png" alt="Maze Logo">
     </div>
     <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="pages/about.html">About</a>
-      <a href="#">Shop</a>
-      <a href="#">Contact</a>
-    </nav>
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#about" class="nav-link">About</a>
+  <a href="#shop" class="nav-link">Shop</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</nav>
     <div class="auth-buttons">
       <a href="#" class="btn-link">Login</a>
       <a href="#" class="btn-primary">Sign Up</a>
     </div>
   </header>
-
+<section id="home" class="hero">
   <main class="hero">
     <h1 class="glow">Welcome! I'm Maze</h1>
     <p class="subtitle">Please cheack out my dark modern portfolio built towards the future</p>
   </main>
+  </section>
+
+  <section id="about" class="about-section">
+  <!-- About Me -->
+</section>
+
+  <script>
+  window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) {
+      navbar.style.backgroundColor = "var(--bg-light)";
+      navbar.style.borderBottom = "2px solid var(--muted)";
+    } else {
+      navbar.style.backgroundColor = "transparent";
+      navbar.style.borderBottom = "none";
+    }
+  });
+</script>
+<script>
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80; // offset for fixed navbar
+      if (scrollY >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").includes(current)) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
