@@ -1,9 +1,10 @@
 :root {
-  --bg: #0e0e10;
-  --accent: #6c5ce7;
-  --accent2: #00cec9;
-  --text: #f5f6fa;
-  --muted: #b2bec3;
+  --bg: #704345;            /* deep mocha */
+  --bg-light: #a05c5c;       /* deep rose */
+  --accent: #f8bfc8;         /* blush pink */
+  --accent2: #fff0f3;        /* cream white */
+  --text: #1f1f1f;           /* soft black */
+  --muted: #d9c6c6;          /* pale rose-gray */
 }
 
 * {
@@ -15,42 +16,45 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   min-height: 100vh;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 2rem;
-  background-color: var(--bg);
-  border-bottom: 1px solid #1e1e1e;
+  background-color: var(--bg-light);
+  border-bottom: 2px solid var(--muted);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .logo img {
-  height: 40px;
+  height: 50px;
 }
 
+/* Nav Links */
 .nav-links {
   display: flex;
   gap: 2rem;
 }
 
 .nav-links a {
-  color: var(--text);
+  color: var(--accent2);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--accent2);
+  color: var(--accent);
 }
 
+/* Auth Buttons */
 .auth-buttons {
   display: flex;
   gap: 1rem;
@@ -59,32 +63,34 @@ body {
 .btn-link {
   background: none;
   border: none;
-  color: var(--text);
+  color: var(--accent2);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .btn-link:hover {
-  color: var(--accent2);
+  color: var(--accent);
 }
 
+/* Primary Button */
 .btn-primary {
   padding: 0.5rem 1rem;
-  background-color: transparent;
+  background-color: var(--accent);
   border: 2px solid var(--accent);
-  color: var(--accent);
+  color: var(--text);
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent);
+  background-color: var(--accent2);
   color: var(--bg);
   box-shadow: 0 0 10px var(--accent2);
 }
 
+/* Hero */
 .hero {
   text-align: center;
   padding: 6rem 2rem;
@@ -100,6 +106,8 @@ body {
   color: var(--muted);
   margin: 1rem 0;
 }
+
+/* Auth Section */
 .auth-container {
   padding: 4rem 2rem;
   text-align: center;
@@ -112,40 +120,8 @@ body {
 .auth-tabs button {
   background: none;
   border: none;
-  color: var(--text);
+  color: var(--accent2);
   font-size: 1.1rem;
   margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.auth-tabs button:hover {
-  border-color: var(--accent2);
-  color: var(--accent2);
-}
-
-.auth-box {
-  max-width: 400px;
-  margin: 0 auto;
-  background: #1e1e24;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
-}
-
-.auth-box input {
-  display: block;
-  width: 100%;
-  margin: 1rem 0;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background: #0e0e10;
-  color: var(--text);
-}
-
-.hidden {
-  display: none;
+  padding: 0.5
 }
