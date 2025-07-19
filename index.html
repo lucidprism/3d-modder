@@ -8,13 +8,43 @@
   <!-- Firebase SDKs (put this in your HTML <head> or before closing </body>) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+
+contactForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  try {
+    await addDoc(collection(db, "contactMessages"), {
+      name,
+      email,
+      message,
+      timestamp: new Date()
+    });
+    formStatus.textContent = "Message sent!";
+    contactForm.reset();
+  } catch (error) {
+    console.error("Error sending message:", error);
+    formStatus.textContent = "Something went wrong.";
+  }
+});
 
   // Replace this config with yours:
   const firebaseConfig = {
@@ -91,18 +121,38 @@
   <!-- About Me -->
 </section>
 
-<section id="contact" class="contact-section">
-  <div class="container">
-    <h2>Contact Me</h2>
-    <p>If you'd like to work together, ask questions, or just say hello — reach out!</p>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
-  </div>
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form id="contact-form">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+    <p id="form-status"></p>
+  </form>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".section");
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target); // animate only once
+          }
+        });
+      },
+      { threshold: 0.1 } // trigger when 10% is visible
+    );
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
 
   <script>
   window.addEventListener("scroll", () => {
