@@ -7,11 +7,14 @@
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
+  <!-- Navbar -->
   <header class="navbar">
     <div class="logo">
-      <img src="../assets/images/logo_transparent.png" alt="Enigma Logo" />
+      <a href="../index.html">
+        <img src="../assets/images/logo_transparent.png" alt="Lucid Prism Logo" />
+      </a>
     </div>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Main Navigation">
       <a href="../index.html">Home</a>
       <a href="about.html">About</a>
       <a href="#">Shop</a>
@@ -19,31 +22,59 @@
     </nav>
     <div class="auth-buttons">
       <span id="auth-status"></span>
-      <button id="logout-btn" class="btn-link">Logout</button>
+      <button id="logout-btn" class="btn-link" aria-label="Logout">Logout</button>
     </div>
   </header>
 
+  <!-- Main Auth Section -->
   <main class="auth-container">
-    <div class="auth-tabs">
-      <button onclick="showTab('login')">Login</button>
-      <button onclick="showTab('signup')">Sign Up</button>
+    <div class="auth-tabs" role="tablist" aria-label="Authentication Tabs">
+      <button onclick="showTab('login')" role="tab" aria-selected="true">Login</button>
+      <button onclick="showTab('signup')" role="tab">Sign Up</button>
     </div>
 
-    <div class="auth-box" id="login-tab">
+    <!-- Login Box -->
+    <section class="auth-box" id="login-tab" role="tabpanel">
       <h2>Login</h2>
-      <input type="email" id="login-email" placeholder="Email" />
-      <input type="password" id="login-password" placeholder="Password" />
+      <input 
+        type="email" 
+        id="login-email" 
+        placeholder="Email" 
+        autocomplete="email" 
+        required 
+      />
+      <input 
+        type="password" 
+        id="login-password" 
+        placeholder="Password" 
+        autocomplete="current-password" 
+        required 
+      />
       <button id="login-btn" class="btn-primary">Login</button>
-    </div>
+    </section>
 
-    <div class="auth-box hidden" id="signup-tab">
+    <!-- Signup Box -->
+    <section class="auth-box hidden" id="signup-tab" role="tabpanel">
       <h2>Sign Up</h2>
-      <input type="email" id="signup-email" placeholder="Email" />
-      <input type="password" id="signup-password" placeholder="Password" />
+      <input 
+        type="email" 
+        id="signup-email" 
+        placeholder="Email" 
+        autocomplete="email" 
+        required 
+      />
+      <input 
+        type="password" 
+        id="signup-password" 
+        placeholder="Password" 
+        autocomplete="new-password" 
+        required 
+      />
       <button id="signup-btn" class="btn-primary">Sign Up</button>
-    </div>
+    </section>
   </main>
 
+  <!-- Scripts -->
   <script src="../assets/js/auth.js" type="module"></script>
   <script>
     function showTab(tab) {

@@ -5,189 +5,188 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lucid Prism Portfolio</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <!-- Firebase SDKs (put this in your HTML <head> or before closing </body>) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-const contactForm = document.getElementById("contact-form");
-const formStatus = document.getElementById("form-status");
-
-contactForm?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  try {
-    await addDoc(collection(db, "contactMessages"), {
-      name,
-      email,
-      message,
-      timestamp: new Date()
-    });
-    formStatus.textContent = "Message sent!";
-    contactForm.reset();
-  } catch (error) {
-    console.error("Error sending message:", error);
-    formStatus.textContent = "Something went wrong.";
-  }
-});
-
-  // Replace this config with yours:
-  const firebaseConfig = {
-  apiKey: "AIzaSyAY60GV85KGRnBNbp76yIkOujGzD9Llf4Q",
-  authDomain: "lucidprismauth.firebaseapp.com",
-  projectId: "lucidprismauth",
-  storageBucket: "lucidprismauth.firebasestorage.app",
-  messagingSenderId: "1009604111946",
-  appId: "1:1009604111946:web:ffe630acf3c22444fa80b3"
-};
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  // Signup
-  document.getElementById("signup-btn")?.addEventListener("click", () => {
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => alert("Signed up!"))
-      .catch((error) => alert(error.message));
-  });
-
-  // Login
-  document.getElementById("login-btn")?.addEventListener("click", () => {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => alert("Logged in!"))
-      .catch((error) => alert(error.message));
-  });
-
-  // Logout
-  document.getElementById("logout-btn")?.addEventListener("click", () => {
-    signOut(auth).then(() => alert("Logged out!"));
-  });
-
-  // Show user state
-  onAuthStateChanged(auth, (user) => {
-    const authStatus = document.getElementById("auth-status");
-    if (user) {
-      authStatus.innerText = `Welcome, ${user.email}`;
-    } else {
-      authStatus.innerText = "You are not logged in.";
-    }
-  });
-</script>
 </head>
 <body>
+
+  <!-- HEADER / NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img src="assets/images/logo_transparent.png" alt="Maze Logo">
+      <img src="assets/images/logo_transparent.png" alt="Maze Logo" />
     </div>
     <nav class="nav-links">
-  <a href="#home" class="nav-link">Home</a>
-  <a href="#about" class="nav-link">About</a>
-  <a href="#shop" class="nav-link">Shop</a>
-  <a href="#contact" class="nav-link">Contact</a>
-
-</nav>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#shop" class="nav-link">Shop</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
     <div class="auth-buttons">
       <a href="#" class="btn-link">Login</a>
       <a href="#" class="btn-primary">Sign Up</a>
     </div>
   </header>
-<section id="home" class="hero">
-  <main class="hero">
+
+  <!-- HERO / HOME SECTION -->
+  <section id="home" class="section hero">
     <h1 class="glow">Welcome! I'm Maze</h1>
     <p class="subtitle">Please check out my dark modern portfolio built towards the future</p>
-  </main>
   </section>
 
-  <section id="about" class="about-section">
-  <!-- About Me -->
-</section>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section about-section">
+    <h2>About Me</h2>
+    <p>Write something awesome about yourself here...</p>
+  </section>
 
-<section id="contact">
-  <h2>Contact Me</h2>
-  <form id="contact-form">
-    <input type="text" id="name" placeholder="Your Name" required />
-    <input type="email" id="email" placeholder="Your Email" required />
-    <textarea id="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-    <p id="form-status"></p>
-  </form>
-</section>
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section contact-section">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+      <p id="form-status"></p>
+    </form>
+  </section>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".section");
+  <!-- JS: Navbar scroll effect -->
+  <script>
+    window.addEventListener("scroll", () => {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 10) {
+        navbar.style.backgroundColor = "var(--bg-light)";
+        navbar.style.borderBottom = "2px solid var(--muted)";
+      } else {
+        navbar.style.backgroundColor = "transparent";
+        navbar.style.borderBottom = "none";
+      }
+    });
+  </script>
 
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
+  <!-- JS: Nav link highlight -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80;
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+  <!-- JS: Section animations -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add("in-view");
-            observer.unobserve(entry.target); // animate only once
+            observer.unobserve(entry.target);
           }
         });
-      },
-      { threshold: 0.1 } // trigger when 10% is visible
-    );
+      }, { threshold: 0.1 });
 
-    sections.forEach(section => {
-      observer.observe(section);
+      document.querySelectorAll(".section").forEach(section => {
+        observer.observe(section);
+      });
     });
-  });
-</script>
+  </script>
 
-  <script>
-  window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 10) {
-      navbar.style.backgroundColor = "var(--bg-light)";
-      navbar.style.borderBottom = "2px solid var(--muted)";
-    } else {
-      navbar.style.backgroundColor = "transparent";
-      navbar.style.borderBottom = "none";
-    }
-  });
-</script>
-<script>
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll(".nav-link");
+  <!-- FIREBASE SETUP -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  window.addEventListener("scroll", () => {
-    let current = "";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAY60GV85KGRnBNbp76yIkOujGzD9Llf4Q",
+      authDomain: "lucidprismauth.firebaseapp.com",
+      projectId: "lucidprismauth",
+      storageBucket: "lucidprismauth.firebasestorage.app",
+      messagingSenderId: "1009604111946",
+      appId: "1:1009604111946:web:ffe630acf3c22444fa80b3"
+    };
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 80; // offset for fixed navbar
-      if (scrollY >= sectionTop) {
-        current = section.getAttribute("id");
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Contact Form Submission
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("form-status");
+
+    contactForm?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      try {
+        await addDoc(collection(db, "contactMessages"), {
+          name,
+          email,
+          message,
+          timestamp: new Date()
+        });
+        formStatus.textContent = "Message sent!";
+        contactForm.reset();
+      } catch (error) {
+        console.error("Error sending message:", error);
+        formStatus.textContent = "Something went wrong.";
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes(current)) {
-        link.classList.add("active");
+    // Auth Handlers
+    document.getElementById("signup-btn")?.addEventListener("click", () => {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => alert("Signed up!"))
+        .catch((error) => alert(error.message));
+    });
+
+    document.getElementById("login-btn")?.addEventListener("click", () => {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => alert("Logged in!"))
+        .catch((error) => alert(error.message));
+    });
+
+    document.getElementById("logout-btn")?.addEventListener("click", () => {
+      signOut(auth).then(() => alert("Logged out!"));
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      const authStatus = document.getElementById("auth-status");
+      if (user) {
+        authStatus.innerText = `Welcome, ${user.email}`;
+      } else {
+        authStatus.innerText = "You are not logged in.";
       }
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
